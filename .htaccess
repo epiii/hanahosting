@@ -1,0 +1,79 @@
+#php_flag display_errors off
+
+ErrorDocument 404 /404.html
+#ErrorDocument 400 /error-404
+
+
+RewriteEngine On
+#RewriteRule   ^konfirmasi/?$   								index.php?menu=vkonfirmasi 
+#RewriteRule   ^([a-z]{2,2})/([a-zA-Z0-9_-]+)$		 			index.php?menu=$1&id=$2 
+#RewriteRule  ^admin/keluar/?$			 						admin/index.php?menu=logout 
+
+#redirect 301 /404.html
+#front-end -
+	#RewriteRule   ^error-404/?$   								index.php?menu=error_404 
+	RewriteRule   ^beranda/?$   								index.php?menu=vberanda 
+	RewriteRule   ^tentang/?$   								index.php?menu=vtentang
+	RewriteRule   ^kontak/?$   									index.php?menu=vkontak 
+	RewriteRule   ^cara-donasi/?$   							index.php?menu=vcdonasi 
+	RewriteRule   ^donasi/?$   									index.php?menu=vdonasi 
+	RewriteRule   ^galeri/?$		   							index.php?menu=vgaleri 
+	RewriteRule   ^masuk/?$   									index.php?menu=vmasuk 
+	RewriteRule   ^daftar/?$   									index.php?menu=vdaftar 
+	RewriteRule   ^konfirmasi/(.*)$ 							index.php?menu=vkonfirmasi&acak=$1 
+
+	RewriteRule   ^keluar/?$		 							index.php?menu=logout 
+
+#halaman user -
+	RewriteRule   ^user/main/?$   								user/index.php?menu=vmain 
+	RewriteRule   ^user/profil/?$   							user/index.php?menu=vprofil 
+	RewriteRule   ^user/penerima/?$ 							user/index.php?menu=vmpenerima
+	#donasi
+		#rutin
+			#rutin
+				RewriteRule  ^user/pengaturan-donasi-rutin/?$	user/index.php?menu=vddonatur1
+				RewriteRule  ^user/rekap-donasi-rutin/?$		user/index.php?menu=vtdonrutin
+			#insidental
+				RewriteRule  ^user/donasi-insidental/?$			user/index.php?menu=vtdoninsidental
+
+#halaman admin -
+	#common --
+		RewriteRule   ^admin/beranda/?$ 						admin/index.php?menu=vberanda 
+		RewriteRule   ^admin/penerima/?$ 						admin/index.php?menu=vmpenerima 
+		RewriteRule   ^admin/donatur/?$ 						admin/index.php?menu=vmdonatur 
+		RewriteRule   ^admin/penyalur/?$ 						admin/index.php?menu=vmlembaga 
+		RewriteRule   ^admin/sekolah/?$ 						admin/index.php?menu=vmsekolah 
+		RewriteRule   ^admin/admin/?$	 						admin/index.php?menu=vmadmin 
+		RewriteRule   ^admin/profil/?$	 						admin/index.php?menu=vprofil 
+		RewriteRule   ^admin/marketer/?$						admin/index.php?menu=vmmarketer 
+	#aliran dana --
+		#donasi 
+			#rutin
+				RewriteRule  ^admin/donasi-rutin/?$					admin/index.php?menu=vtdonrutin
+			#insidental
+				RewriteRule  ^admin/donasi-insidentil/?$			admin/index.php?menu=vtdoninsidentil
+		#penyaluran 
+			RewriteRule  ^admin/penyaluran-dana/?$				admin/index.php?menu=vtpenyaluran
+
+	#setting --
+		#periode ---
+			RewriteRule   ^admin/periode/?$ 					admin/index.php?menu=vmperiode
+		#pendidikan  ---
+			RewriteRule   ^admin/sekolah/?$ 					admin/index.php?menu=vmsekolah
+			RewriteRule   ^admin/jenjang/?$ 					admin/index.php?menu=vmjenjang	
+		#penerima ---
+			RewriteRule   ^admin/kategori-penerima/?$ 			admin/index.php?menu=vmkatpenerima
+			RewriteRule   ^admin/detail-penerima/?$ 			admin/index.php?menu=vdkatpenerima
+		#donatur ---
+			RewriteRule   ^admin/kategori-donatur/?$ 			admin/index.php?menu=vmkatdonatur
+			RewriteRule   ^admin/detail-donatur/?$ 				admin/index.php?menu=vmdkatdonatur
+		#pembayaran---	
+			RewriteRule   ^admin/kategori-pembayaran/?$ admin/index.php?menu=vmtipebayar
+			RewriteRule   ^admin/detail-pembayaran/?$ 	admin/index.php?menu=vmdtipebayar
+		#lokasi---
+			RewriteRule   ^admin/propinsi/?$ 			admin/index.php?menu=vmpropinsi
+			RewriteRule   ^admin/kota/?$ 				admin/index.php?menu=vmkota
+			RewriteRule   ^admin/kecamatan/?$ 			admin/index.php?menu=vmkecamatan
+
+# Send all blocked request to homepage with 403 Forbidden error!
+#RewriteRule ^(.*)$ index.php [F,L]
